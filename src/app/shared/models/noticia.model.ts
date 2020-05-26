@@ -1,11 +1,11 @@
 import { Autor } from './autor.model';
 
-export interface Noticia {
-	noticiaID: number;
+export class Noticia {
+	noticiaId: number;
 	titulo: string;
 	descripcion: string;
 	contenido: string;
 	fecha: Date;
-	autorID: number;
+	autorId: number;
 	autor: Autor;
 }

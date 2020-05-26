@@ -1,15 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{noticia.titulo}}</ion-title>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/listado-noticias"></ion-back-button>
+		</ion-buttons>
+    <ion-title>Detalle de la noticia</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<span><strong>{{noticia.autor.nombre}} {{noticia.autor.apellido}}</strong></span>
-	<br>
-	<h2>{{noticia.descripcion}}</h2>
-	<h3>noticia.contenido</h3>
-	<h3>{{noticia.fecha | date}}</h3>
+
+	<ion-grid fixed>
+		<ion-row>
+			<ion-col size="12">
+				<h2>{{noticia.titulo}}</h2>
+				<h4>{{noticia.descripcion}}</h4>
+				<br>
+				<span><strong>{{noticia.autor.nombre}} {{noticia.autor.apellido}}</strong></span>
+				<br>
+				<h5>{{noticia.contenido}}</h5>
+				<h5>{{noticia.fecha | date}}</h5>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+
 
 
 </ion-content>

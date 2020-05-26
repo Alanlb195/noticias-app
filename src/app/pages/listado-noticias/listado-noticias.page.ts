@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NoticiasService } from '../../services/noticias-service/noticias.service';
-import { Noticia } from '../../models/noticia.model';
 import { Router } from '@angular/router';
+import { NoticiasService } from '../../shared/services/noticias-service/noticias.service';
+import { Noticia } from '../../shared/models/noticia.model';
 
 @Component({
   selector: 'app-listado-noticias',
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./listado-noticias.page.scss'],
 })
 export class ListadoNoticiasPage implements OnInit {
+
   noticias: Noticia[];
 
   constructor(public noticiasService: NoticiasService, public route: Router) { }
@@ -21,8 +22,27 @@ export class ListadoNoticiasPage implements OnInit {
     });
   }
 
-  irADetalle(noticia: Noticia) {
+  verNoticia(noticia: Noticia) {
     this.route.navigate(['noticia-detalle', { noticia: JSON.stringify(noticia) }]);
   }
+
+  eliminarNoticia(noticiaId: number, indice: number) {
+    this.noticiasService.eliminarNoticia(noticiaId).subscribe(() => {
+      this.noticias.splice(indice, 1);
+      console.log('Noticia eliminada');
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  agregarNoticia(noticia: Noticia) {
+    this.noticiasService.agregarNoticia(noticia).subscribe(() => {
+      console.log('Noticia agregada');
+    }, error => {
+      console.log(error);
+    });
+  }
+
 
 }

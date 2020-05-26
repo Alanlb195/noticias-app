@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agregar noticia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input [(ngModel)]="noticia.titulo" placeholder="Ingrega un título"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="noticia.descripcion" rows="4" placeholder="Ingresa una descripción"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contenido</ion-label>
+      <ion-textarea [(ngModel)]="noticia.contenido" rows="6" placeholder="Ingresa su contenido"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-datetime [(ngModel)]="noticia.fecha" displayFormat="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-select [(ngModel)]="noticia.autorId" Splaceholder="Selecciona el autor" interface="popover">
+        <ion-select-option  *ngFor="let autor of autores" [value]="autor.autorId">{{autor.nombre}}  {{autor.apellido}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button (click)="agregarNoticia()" expand="full" fill="outline" shape="round">
+    Agregar
+  </ion-button>
+
+
+
+
+</ion-content>

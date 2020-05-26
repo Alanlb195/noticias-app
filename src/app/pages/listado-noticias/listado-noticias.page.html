@@ -1,26 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-  	<ion-buttons slot="start">
-      <ion-menu-button color="primary"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Noticias</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button color="primary"></ion-menu-button>
+		</ion-buttons>
+		<ion-title>Noticias</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-	<ion-card *ngFor="let noticia of noticias">
-	  <ion-card-header>
-	    <ion-card-title>{{noticia.titulo}}</ion-card-title>
-	    <ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
-	  </ion-card-header>
+	<ion-grid fixed>
+		<ion-row>
+			<ion-col size="6" *ngFor="let noticia of noticias; let indice = index">
 
-	  <ion-card-content (click)="irADetalle(noticia)">
-	  	{{noticia.contenido}}
-	    <p><strong>Autor: </strong>{{noticia.autor.nombre}} {{noticia.autor.apellido}}</p>
-	    <p><strong>Fecha: </strong>{{noticia.fecha | date}}</p>
-	  </ion-card-content>
-	</ion-card>
+				<ion-card [button]="true">
+					<ion-card-header (click)="verNoticia(noticia)">
+						<ion-card-title>{{noticia.titulo}}</ion-card-title>
+						<ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
+					</ion-card-header>
+					<ion-card-content (click)="verNoticia(noticia)">
+						<p><strong>Autor: </strong>{{noticia.autor.nombre}} {{noticia.autor.apellido}}</p>
+						<p><strong>Fecha: </strong>{{noticia.fecha | date}}</p>
+					</ion-card-content>
 
+					<ion-button (click)="eliminarNoticia(noticia.noticiaId, indice)" color="danger" expand="full" fill="outline" shape="round">
+						Eliminar noticia
+					</ion-button>
+
+
+				</ion-card>
+
+
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 
 </ion-content>

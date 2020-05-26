@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Noticia } from '../../models/noticia.model';
 import { Observable } from 'rxjs';
-
+import { Autor } from '../../models/autor.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NoticiasService {
+export class AutorService {
 
   constructor(public http: HttpClient) { }
 
-  // GET
-  verNoticias(): Observable<Noticia[]> {
-  	return this.http.get<Noticia[]>("https://localhost:44308/api/noticias/obtener");
-  }
+  url = 'http://localhost:58156/api/Authors/';
 
+  // GET
+  verAutores(): Observable<Autor[]> {
+    return this.http.get<Autor[]>(this.url);
+  }
 
 }
