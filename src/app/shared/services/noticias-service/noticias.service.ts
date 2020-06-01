@@ -11,11 +11,15 @@ export class NoticiasService {
 
   constructor(public http: HttpClient) { }
 
-  url = 'http://localhost:58156/api/Noticias/';
+  url = 'http://localhost:63029/api/Noticias/';
 
   // GET
   verNoticias(): Observable<Noticia[]> {
     return this.http.get<Noticia[]>(this.url);
+  }
+
+  verNoticia(id: number): Observable<Noticia> {
+    return this.http.get<Noticia>(this.url + id);
   }
 
   // DELETE

@@ -50,7 +50,8 @@ export class AgregarNoticiaPage implements OnInit {
 
 
 
-  // Metodo para agregar Toast
+  // Metodo para mostrar un Toast
+  // class: toastOk / toastNotOk
   async mostrarToast(mensaje: string, okOrNotOk: string) {
     const toast = await this.toastController.create(
       {

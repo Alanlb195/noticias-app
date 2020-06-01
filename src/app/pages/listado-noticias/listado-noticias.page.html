@@ -13,12 +13,12 @@
 		<ion-row>
 			<ion-col size="6" *ngFor="let noticia of noticias; let indice = index">
 
-				<ion-card [button]="true">
-					<ion-card-header (click)="verNoticia(noticia)">
+				<ion-card>
+					<ion-card-header>
 						<ion-card-title>{{noticia.titulo}}</ion-card-title>
 						<ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
 					</ion-card-header>
-					<ion-card-content (click)="verNoticia(noticia)">
+					<ion-card-content>
 						<p><strong>Autor: </strong>{{noticia.autor.nombre}} {{noticia.autor.apellido}}</p>
 						<p><strong>Fecha: </strong>{{noticia.fecha | date}}</p>
 					</ion-card-content>
@@ -27,6 +27,9 @@
 						Eliminar noticia
 					</ion-button>
 
+					<ion-button (click)="modificarNoticia(noticia, indice)" color="warning" expand="full" fill="outline" shape="round">
+						Modificar noticia
+					</ion-button>
 
 				</ion-card>
 
