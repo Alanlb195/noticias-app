@@ -10,7 +10,7 @@ export class AutorService {
 
   constructor(public http: HttpClient) { }
 
-  url = 'http://localhost:58156/api/Authors/';
+  url = 'http://localhost:5872/api/Autors/';
 
   // GET
   verAutores(): Observable<Autor[]> {

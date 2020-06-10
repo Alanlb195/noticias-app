@@ -1,19 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Noticia } from '../../shared/models/noticia.model';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { NoticiasService } from "src/app/shared/services/noticias-service/noticias.service";
+import { Noticia } from "src/app/shared/models/noticia.model";
 
 @Component({
-  selector: 'app-noticia-detalle',
-  templateUrl: './noticia-detalle.page.html',
-  styleUrls: ['./noticia-detalle.page.scss'],
+  selector: "app-noticia-detalle",
+  templateUrl: "./noticia-detalle.page.html",
+  styleUrls: ["./noticia-detalle.page.scss"],
 })
 export class NoticiaDetallePage implements OnInit {
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private noticiasService: NoticiasService
+  ) {}
 
-  constructor(private state: ActivatedRoute) { }
-  noticia: Noticia;
+  noticia: Noticia = new Noticia();
 
   ngOnInit() {
-    this.noticia = JSON.parse(this.state.snapshot.params.noticia);
+    this.activeRoute.paramMap.subscribe((param) => {
+      let id = param.get("id");
+      this.noticiasService.getNoticia(parseInt(id)).subscribe((response: Noticia) => {
+        this.noticia = response;
+      }, (error) => {
+        console.log(error);
+      });
+    });
   }
-
 }

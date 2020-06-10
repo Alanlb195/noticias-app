@@ -12,12 +12,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'noticia-detalle',
+    path: 'noticia-detalle/:id',
     loadChildren: () => import('./pages/noticia-detalle/noticia-detalle.module').then( m => m.NoticiaDetallePageModule)
-  },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule)
   },
   {
     path: 'agregar-noticia',

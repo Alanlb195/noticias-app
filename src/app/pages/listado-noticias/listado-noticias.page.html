@@ -1,41 +1,53 @@
 <ion-header [translucent]="true">
 	<ion-toolbar>
+		<ion-title>Noticias</ion-title>
 		<ion-buttons slot="start">
 			<ion-menu-button color="primary"></ion-menu-button>
 		</ion-buttons>
-		<ion-title>Noticias</ion-title>
 	</ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-	<ion-grid fixed>
-		<ion-row>
-			<ion-col size="6" *ngFor="let noticia of noticias; let indice = index">
+	<ion-grid>
 
-				<ion-card>
-					<ion-card-header>
+		<ion-row>
+			<ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4"
+				*ngFor="let noticia of noticias; let indice = index">
+				<ion-card button=true>
+					<ion-card-header (click)="noticiaDetalle(noticia.noticiaId)">
 						<ion-card-title>{{noticia.titulo}}</ion-card-title>
 						<ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
 					</ion-card-header>
-					<ion-card-content>
+					<ion-card-content (click)="noticiaDetalle(noticia.noticiaId)">
 						<p><strong>Autor: </strong>{{noticia.autor.nombre}} {{noticia.autor.apellido}}</p>
 						<p><strong>Fecha: </strong>{{noticia.fecha | date}}</p>
 					</ion-card-content>
 
-					<ion-button (click)="eliminarNoticia(noticia.noticiaId, indice)" color="danger" expand="full" fill="outline" shape="round">
-						Eliminar noticia
-					</ion-button>
-
-					<ion-button (click)="modificarNoticia(noticia, indice)" color="warning" expand="full" fill="outline" shape="round">
-						Modificar noticia
-					</ion-button>
-
+					<ion-row>
+						<ion-col size="6">
+							<ion-button (click)="eliminarNoticia(noticia.noticiaId, indice)" color="danger"
+								expand="block" fill="outline" shape="round">
+								Eliminar
+							</ion-button>
+						</ion-col>
+						<ion-col size="6">
+							<ion-button color="warning" expand="block" fill="outline" shape="round">
+								Modificar
+							</ion-button>
+						</ion-col>
+					</ion-row>
 				</ion-card>
-
-
 			</ion-col>
 		</ion-row>
+
 	</ion-grid>
+
+	<!-- fab placed to the bottom end -->
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+		<ion-fab-button (click)="agregarNoticia()">
+			<ion-icon ng name="add-circle"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
 
 </ion-content>

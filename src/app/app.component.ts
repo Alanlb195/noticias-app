@@ -14,12 +14,7 @@ export class AppComponent implements OnInit {
     {
       title: 'Noticias',
       url: '/listado-noticias',
-      icon: 'file-tray'
-    },
-    {
-      title: 'Agregar noticia',
-      url: '/agregar-noticia',
-      icon: 'add'
+      icon: 'newspaper'
     },
   ];
 

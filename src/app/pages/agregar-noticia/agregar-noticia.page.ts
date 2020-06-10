@@ -22,30 +22,29 @@ export class AgregarNoticiaPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.autorService.verAutores().subscribe((arregloAutores) => {
-      this.autores = arregloAutores;
+    // To select the autor
+    this.autorService.verAutores().subscribe((response: Autor[]) => {
+      this.autores = response;
     });
   }
 
-  // Al hacer click en el boton agregar
   async agregarNoticia() {
     // Loading...
     const loading = await this.loadingController.create({
       message: "Guardando noticia...",
+      spinner: "bubbles",
     });
     await loading.present();
 
-    this.noticiaService.agregarNoticia(this.noticia).subscribe(
+    this.noticiaService.createNoticia(this.noticia).subscribe(
       () => {
-        // Si se logro agragar la noticia
         this.loadingController.dismiss();
         this.mostrarToast("Noticia agregada", "toastOk");
+        this.noticia = new Noticia;
       },
-      (error) => {
-        // Si ocurrio un error
+      () => {
         this.loadingController.dismiss();
-        this.mostrarToast("Ha ocurrido un error", "toastNotOk");
-        console.log(error);
+        this.mostrarToast("Ha ocurrido un error: ", "toastNotOk");
       }
     );
   }

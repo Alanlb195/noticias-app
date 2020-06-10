@@ -11,31 +11,31 @@ export class NoticiasService {
 
   constructor(public http: HttpClient) { }
 
-  url = 'http://localhost:63029/api/Noticias/';
+  url = 'http://localhost:5872/api/Noticias/';
 
   // GET
-  verNoticias(): Observable<Noticia[]> {
+  getNoticias(): Observable<Noticia[]> {
     return this.http.get<Noticia[]>(this.url);
   }
 
-  verNoticia(id: number): Observable<Noticia> {
-    return this.http.get<Noticia>(this.url + id);
+  // GET ONE
+  getNoticia(noticiaId: number): Observable<Noticia> {
+    return this.http.get<Noticia>(this.url + noticiaId);
   }
-
-  // DELETE
-  eliminarNoticia(noticiaId: number): Observable<void> {
-    return this.http.delete<void>(this.url + noticiaId);
-  }
-
+  
   // CREATE
-  agregarNoticia(noticia: Noticia): Observable<void> {
+  createNoticia(noticia: Noticia): Observable<void> {
     return this.http.post<void>(this.url, noticia);
   }
 
   // UPDATE
-  actualizarNoticia(noticia: Noticia): Observable<void> {
-    return this.http.put<void>(this.url, noticia);
+  updateNoticia(id: number ,noticia: Noticia): Observable<void> {
+    return this.http.put<void>(this.url + id, noticia);
   }
 
+  // DELETE
+  deleteNoticia(noticiaId: number): Observable<void> {
+    return this.http.delete<void>(this.url + noticiaId);
+  }
 
 }
