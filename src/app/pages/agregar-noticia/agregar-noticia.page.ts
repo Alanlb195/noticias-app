@@ -40,7 +40,7 @@ export class AgregarNoticiaPage implements OnInit {
       () => {
         this.loadingController.dismiss();
         this.mostrarToast("Noticia agregada", "toastOk");
-        this.noticia = new Noticia;
+        this.cleanNoticia(this.noticia);
       },
       () => {
         this.loadingController.dismiss();
@@ -49,6 +49,7 @@ export class AgregarNoticiaPage implements OnInit {
     );
   }
 
+  
   // Metodo para mostrar un Toast, class: toastOk / toastNotOk
   async mostrarToast(mensaje: string, okOrNotOk: string) {
     const toast = await this.toastController.create({
@@ -57,5 +58,14 @@ export class AgregarNoticiaPage implements OnInit {
       duration: 2000,
     });
     toast.present();
+  }
+  // Limpiar noticia
+  async cleanNoticia(notice: Noticia) {
+    (await notice.noticiaId) == null,
+      (notice.titulo = ""),
+      (notice.descripcion = ""),
+      (notice.contenido = ""),
+      (notice.autor = null),
+      (notice.autorId = null);
   }
 }

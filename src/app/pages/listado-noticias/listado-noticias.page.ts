@@ -19,12 +19,13 @@ export class ListadoNoticiasPage implements OnInit {
     public router: Router
   ) {}
 
+  // Se cargan todas las noticias
   ngOnInit() {
     this.noticiasService.getNoticias().subscribe(
       (response: Noticia[]) => {
         this.noticias = response;
       },
-      (error) => {
+      () => {
         this.mostrarToast(
           "Hubo un error al cargar las noticias",
           "toastNotOk"
@@ -46,7 +47,7 @@ export class ListadoNoticiasPage implements OnInit {
         this.noticias.splice(indice, 1);
         this.mostrarToast("Noticia eliminada", "toastOk");
       },
-      (error) => {
+      () => {
         this.loadingController.dismiss();
         this.mostrarToast("Ha ocurrido un error", "toastNotOk");
       }
