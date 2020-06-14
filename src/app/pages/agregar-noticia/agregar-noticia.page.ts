@@ -49,7 +49,6 @@ export class AgregarNoticiaPage implements OnInit {
     );
   }
 
-  
   // Metodo para mostrar un Toast, class: toastOk / toastNotOk
   async mostrarToast(mensaje: string, okOrNotOk: string) {
     const toast = await this.toastController.create({
@@ -59,12 +58,14 @@ export class AgregarNoticiaPage implements OnInit {
     });
     toast.present();
   }
+
   // Limpiar noticia
   async cleanNoticia(notice: Noticia) {
-    (await notice.noticiaId) == null,
+    notice.noticiaId == null,
       (notice.titulo = ""),
       (notice.descripcion = ""),
       (notice.contenido = ""),
+      (notice.fecha = null),
       (notice.autor = null),
       (notice.autorId = null);
   }
