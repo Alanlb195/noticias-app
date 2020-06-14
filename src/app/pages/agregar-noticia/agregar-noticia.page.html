@@ -3,7 +3,8 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/listado-noticias"></ion-back-button>
     </ion-buttons>
-    <ion-title>Agregar noticia</ion-title>
+    <ion-title *ngIf="!editable">Agregar noticia</ion-title>
+    <ion-title *ngIf="editable">Editar noticia</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -49,9 +50,14 @@
           <ion-row>
 
             <ion-col push="2"></ion-col>
-            <ion-col size="4">
+            <ion-col *ngIf="editable == false" size="4">
               <ion-button (click)="agregarNoticia()" expand="block" fill="outline" shape="round">
                 Agregar
+              </ion-button>
+            </ion-col>
+            <ion-col *ngIf="editable == true" size="4">
+              <ion-button  (click)="editarNoticia()" expand="block" fill="outline" shape="round">
+                Editar
               </ion-button>
             </ion-col>
             <ion-col push="2"></ion-col>

@@ -26,12 +26,21 @@ export class ListadoNoticiasPage implements OnInit {
         this.noticias = response;
       },
       () => {
-        this.mostrarToast(
-          "Hubo un error al cargar las noticias",
-          "toastNotOk"
-        );
+        this.mostrarToast("Hubo un error al cargar las noticias", "toastNotOk");
       }
     );
+  }
+
+  editarNoticia(noticia: Noticia) {
+    this.router.navigate(['/agregar-noticia', {noticiaEditar: JSON.stringify(noticia)}]);
+  }
+  
+  async noticiaDetalle(id: number) {
+    await this.router.navigate(["/noticia-detalle", id]);
+  }
+  
+  async agregarNoticia() {
+    await this.router.navigateByUrl("/agregar-noticia");
   }
 
   async eliminarNoticia(noticiaId: number, indice: number) {
@@ -52,15 +61,6 @@ export class ListadoNoticiasPage implements OnInit {
         this.mostrarToast("Ha ocurrido un error", "toastNotOk");
       }
     );
-  }
-
-  async noticiaDetalle(id: number) {
-    await this.router.navigate(["/noticia-detalle", id]);
-  }
-
-
-  async agregarNoticia() {
-    await this.router.navigateByUrl('/agregar-noticia');
   }
 
   // Metodo para mostrar un Toast, class: toastOk / toastNotOk
