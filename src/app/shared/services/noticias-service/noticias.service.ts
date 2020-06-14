@@ -13,7 +13,7 @@ export class NoticiasService {
 
   url = 'http://localhost:5872/api/Noticias/';
 
-  // GET
+  // GET ALL
   getNoticias(): Observable<Noticia[]> {
     return this.http.get<Noticia[]>(this.url);
   }
